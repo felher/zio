@@ -19,6 +19,9 @@ object TaggedSpec extends ZIOBaseSpec {
             """
       }
       assertM(result)(isRight(isUnit))
+    } @@ exceptDotty,
+    zio.test.test("the tag for a self intersection type (X with X) is the same as for the type itself (X)") {
+      assert(implicitly[Tagged[String with String]].tag)(equalTo(implicitly[Tagged[String]].tag))
     } @@ exceptDotty
   )
 }
